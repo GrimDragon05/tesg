@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APK Streaming Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📱 APK Streaming Control Center</h1>
+            <div class="header-stats">
+                <div class="stat">
+                    <span class="stat-label">Connected Phones:</span>
+                    <span class="stat-value" id="phoneCount">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Server Status:</span>
+                    <span class="stat-value status-badge" id="serverStatus">Offline</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Phones Grid -->
+            <section class="section">
+                <h2>Connected Phones</h2>
+                <div class="phones-grid" id="phonesGrid">
+                    <div class="empty-state">
+                        <p>No phones connected yet</p>
+                        <p class="help-text">Waiting for devices to connect...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="section">
+                <h2>Quick Actions</h2>
+                <div class="actions-grid">
+                    <button class="btn btn-primary" id="startAllBtn" disabled>
+                        ▶️ Start All Streams
+                    </button>
+                    <button class="btn btn-secondary" id="stopAllBtn" disabled>
+                        ⏹️ Stop All Streams
+                    </button>
+                    <button class="btn btn-info" id="refreshBtn">
+                        🔄 Refresh Status
+                    </button>
+                    <button class="btn btn-warning" id="settingsBtn">
+                        ⚙️ Settings
+                    </button>
+                </div>
+            </section>
+
+            <!-- Stream Preview -->
+            <section class="section">
+                <h2>Stream Preview</h2>
+                <div class="stream-preview" id="streamPreview">
+                    <div class="preview-placeholder">
+                        <p>Select a phone to preview stream</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Logs -->
+            <section class="section">
+                <h2>Activity Log</h2>
+                <div class="logs-container" id="logsContainer">
+                    <div class="log-entry info">
+                        System initialized and ready for connections
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Settings Modal -->
+        <div class="modal" id="settingsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Settings</h2>
+                    <button class="close-btn" id="closeSettingsBtn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label for="serverUrl">Server URL:</label>
+                        <input type="text" id="serverUrl" placeholder="ws://localhost:3000" value="ws://localhost:3000">
+                    </div>
+                    <div class="setting-group">
+                        <label for="refreshInterval">Refresh Interval (ms):</label>
+                        <input type="number" id="refreshInterval" value="2000" min="500">
+                    </div>
+                    <div class="setting-group">
+                        <label>
+                            <input type="checkbox" id="autoConnect" checked>
+                            Auto-reconnect on disconnect
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="cancelSettingsBtn">Cancel</button>
+                    <button class="btn btn-primary" id="saveSettingsBtn">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
